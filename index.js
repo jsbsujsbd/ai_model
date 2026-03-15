@@ -33,5 +33,5 @@ schedule.scheduleJob('*/1 * * * *', async () => {
 mogDb()
 
 app.listen(9093, () => {
-  console.log(`服务器运行在 http://localhost:9093`)
+  console.log(`服务器运行在 http://192.168.88.131:9094`)
 })
