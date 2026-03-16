@@ -112,6 +112,10 @@ export const getHistory=async (req,res)=>{
 
 
 export async function processChatLogic(userId,roleId,message,isSystem){
+const now = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Shanghai' }));
+const currentTimeString = `当前时间：${now.getFullYear()}年${now.getMonth() + 1}月${now.getDate()}日 ` +
+                          `星期${['日','一','二','三','四','五','六'][now.getDay()]} ` +
+                          `${now.getHours()}:${now.getMinutes()}`;
     console.log('收到 roleId:', roleId);
     console.log('收到 userId:', userId);
     console.log('用户发送的消息是'+message)
@@ -134,7 +138,7 @@ export async function processChatLogic(userId,roleId,message,isSystem){
     const response = await client.chat.completions.create({
       model: 'deepseek-ai/DeepSeek-V3',  // V3，无思考过程
       messages: [
-        {role:'system',content:roleInfo.systemPrompt},
+        {role:'system',content: `【系统强制设定】${currentTimeString}。请严格基于此时间背景进行对话。以下是你的角色设定：${roleInfo.systemPrompt}`},
         ...historyForAi,
         {role:'user',content:message}
       ],

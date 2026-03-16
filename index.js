@@ -6,6 +6,7 @@ import dotenv from 'dotenv'
 import schedule from 'node-schedule'
 import {AiRole} from './build_ai_model/AiRole.js'
 import {processChatLogic} from './controller/ai_controller/index.js'
+import {cors} from 'cors'
 
 dotenv.config()
 
@@ -15,7 +16,6 @@ const app = express()
 
 app.use(cors())
 app.use(express.json())
-
 app.use('/api', router)
 schedule.scheduleJob('*/1 * * * *', async () => {
   try{
