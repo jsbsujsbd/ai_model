@@ -6,7 +6,6 @@ import dotenv from 'dotenv'
 import schedule from 'node-schedule'
 import {AiRole} from './build_ai_model/AiRole.js'
 import {processChatLogic} from './controller/ai_controller/index.js'
-import {cors} from 'cors'
 dotenv.config()
 
 console.log("API KEY:", process.env.DEEPSEEK_API_KEY)

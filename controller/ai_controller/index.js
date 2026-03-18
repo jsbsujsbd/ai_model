@@ -13,7 +13,8 @@ console.log("API KEY:", process.env.DEEPSEEK_API_KEY)
 const client = new OpenAI({
   apiKey: process.env.DEEPSEEK_API_KEY,
   model: 'deepseek-ai/DeepSeek-V3',
-  baseURL: 'https://api.siliconflow.cn/v1'
+  baseURL: 'https://api.siliconflow.cn/v1',
+  timeout: 60000
 })
 export const chat=async(req,res)=>{
     try {
@@ -72,7 +73,9 @@ export const talk=async(req,res)=>{
 export const getAllroles = async (req, res) => {
   try {
     const { userId } = req.query;
-    
+    // if(err){
+    //   return err
+    // }
     // 🚩 1. 打印前端传过来的 ID 是什么，什么类型
     console.log('--- 收到查询请求 ---');
     console.log('查询参数 userId:', userId);
